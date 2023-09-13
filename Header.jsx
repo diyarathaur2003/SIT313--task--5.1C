@@ -16,10 +16,15 @@ const PostPage = () => {
     // Logic to handle the submission of the post
     console.log('Submitted post:', { postType, title, content, tags, abstract });
   };
+  const getDescriptiontext = () => {
+    return postType == 'question'
+      ? 'For post a question, the following section would be appeared'
+      : 'For post an article, the following section would be appeared'
+  }
 
   return (
     <div>
-      <h1>Post New</h1>
+      <h1>New Post</h1>
       <div className="Select">
         <label>
           Select Post Type:
@@ -43,6 +48,7 @@ const PostPage = () => {
           </label>
           <div>
             <h1> What do you want to ask or share </h1>
+            <p> This section is designed based on type of the post. It could be developed by Conditional rendering. <span style={{ color: 'red' }}> {getDescriptiontext()}</span></p>
           </div>
         </label>
       </div>
@@ -51,7 +57,7 @@ const PostPage = () => {
           <div>
             <div className="Title">
               <label>
-                Title
+                Title:
                 <input
                   type="text"
                   value={title}
@@ -116,7 +122,18 @@ const PostPage = () => {
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  placeholder='Enter article text'
+                  placeholder='Enter a 1- paragraph abstract'
+                />
+              </label>
+            </div>
+            <div className="Tags">
+              <label>
+                Tags:
+                <input
+                  type="text"
+                  value={tags}
+                  onChange={(e) => setTags(e.target.value)}
+                  placeholder='Please add up to 3 tags to describe what your article is about e.g., Java'
                 />
               </label>
             </div>
